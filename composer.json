@@ -1,0 +1,15 @@
+{
+    "name": "onewaymediavn/api-v3",
+    "description": "Oneway.vn API v3!",
+    "require": {
+        "slim/slim": "^2.6"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Oneway Media VN",
+            "email": "onewaymediavn@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta"
+}
