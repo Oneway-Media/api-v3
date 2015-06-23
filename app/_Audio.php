@@ -107,7 +107,69 @@ class Audio {
         
     }
     
-    
+    // Get list of audio.
+    public static function listAudio($from,$limit = null, $sort = null) {
+        $ord = array();
+
+        if ($limit=='') {$limit = '30'; };
+        if ($sort=='') {
+            $sort = 'new';
+            $ord = array( 'date' => 'DESC' );
+        } else if ($sort == 'az') {
+            // Tua de hien tai chua the sap xep theo theo thu tu
+            //$ord = array( 'title' => 'ASC' );
+            $ord = array( 'date' => 'DESC' );
+        } else {
+            $ord = array( 'date' => 'DESC' );
+        };
+
+        $offset = intval($from)*intval($limit);
+
+        $fields = [
+            'id' => 'ID',
+            'title' => 'post_title',
+            'date' => 'post_date',
+            'thumbnail' => ''
+        ];
+        if ($sort != 'view') {
+            $raw = new WP_Query([
+                'post_status' => 'publish',
+                'post_type' => 'audio',
+                'orderby' => $ord,
+                'offset' => $offset,
+                'posts_per_page' => $limit                
+            ]);    
+        } else if ($sort == 'view') {
+            $raw = new WP_Query([
+                'post_status' => 'publish',
+                'post_type' => 'audio',
+                'orderby'   => 'meta_value_num',
+                'meta_key'  => '_count-views_all',
+                'order'   => 'DESC',
+                'offset' => $offset,
+                'posts_per_page' => $limit                
+            ]);
+        }
+        
+
+        $pre = sanitize($raw->posts, $fields);
+
+        if(count($pre) > 0) {
+            foreach($pre as $p) {
+                $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
+                $output[] = $p;
+            }
+
+            return $output;
+        } else {
+            return [];
+        }
+
+        // $res = 'From :'.$from.', Limit :'.$limit.', Sort :'.$sort;
+        // return $res;
+
+    }
+
 	
 }
 

@@ -48,7 +48,20 @@ $router->get('/search/:keyword/:category', function ($keyword, $category) use ($
     json( $Audio->search($keyword, $category) );
 });
 
-
+/*
+*   http://test.oneway.vn/api/api-v3/index.php/audio/:from[/:limit/:sort]
+*/
+$router->get('/audio/:from', function ($from) use ($Audio) {
+	// $res = $Audio->listAudio($from);
+ //    echo $res;
+    json( $Audio->listAudio($from) );
+});
+$router->get('/audio/:from/:sort', function ($from,$limit) use ($Audio) {
+    json ($Audio->listAudio($from,$limit));
+});
+$router->get('/audio/:from/:limit/:sort', function ($from, $limit, $sort) use ($Audio) {
+    json ($Audio->listAudio($from,$limit,$sort));
+});
 
 
 
