@@ -1,0 +1,582 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"lis",
+				"listAudio"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"ex",
+				"exit"
+			],
+			[
+				"arry",
+				"array"
+			],
+			[
+				"arr",
+				"array"
+			],
+			[
+				"if",
+				"if?	$… = ( … ) ? … : …"
+			],
+			[
+				"li",
+				"limit"
+			],
+			[
+				"im",
+				"important"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "app/routes.php",
+			"settings":
+			{
+				"buffer_size": 2898,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "index.php",
+			"settings":
+			{
+				"buffer_size": 290,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/_Audio.php",
+			"settings":
+			{
+				"buffer_size": 6174,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "apiv3.sublime-project",
+			"settings":
+			{
+				"buffer_size": 231,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "|+| \"$ord \"\n",
+			"settings":
+			{
+				"buffer_size": 12,
+				"line_ending": "Windows",
+				"name": "Xdebug Watch",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"contents": "=> D:\\xampp\\htdocs\\dev.oneway.vn\\api\\api-v3\\app\\routes.php\n	|+| 57\n	|+| 83\n",
+			"settings":
+			{
+				"buffer_size": 75,
+				"line_ending": "Windows",
+				"name": "Xdebug Breakpoint",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Windows",
+				"name": "Xdebug Stack",
+				"read_only": true,
+				"scratch": true
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 364.0,
+		"selected_items":
+		[
+			[
+				"xde",
+				"Xdebug: Start Debugging (Launch Browser)"
+			],
+			[
+				"xd",
+				"Xdebug: Breakpoint - Step Over"
+			],
+			[
+				"x",
+				"Xdebug: Breakpoint - Step Into"
+			],
+			[
+				"packe",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php",
+		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/vendor/slim/slim/Slim/Middleware/MethodOverride.php",
+		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/vendor/slim/slim/Slim/Route.php",
+		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/vendor/slim/slim/Slim/Middleware/Flash.php",
+		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/vendor/slim/slim/Slim/Slim.php",
+		"/D/xampp/htdocs/dev.oneway.vn/wp-includes/wp-db.php",
+		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/apiv3.sublime-project",
+		"/C/Users/Admin/AppData/Roaming/Sublime Text 2/Packages/Xdebug Client/Xdebug.sublime-settings",
+		"/D/xampp/htdocs/dev.oneway.vn/wp-config.php",
+		"/D/ONEWAY/BackupWeb150615/wp-config.php",
+		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/app/helpers.php",
+		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/app/routes.php",
+		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/app/_Audio.php",
+		"/C/Users/Admin/Desktop/v3/app/routes.php",
+		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/index.php",
+		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/README.md",
+		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/.git/COMMIT_EDITMSG",
+		"/D/version-control/cross/.git/COMMIT_EDITMSG",
+		"/D/xampp/htdocs/dev.oneway.vn/api/v3/app/_Audio.php",
+		"/D/version-control/asteroids/game.js",
+		"/D/version-control/recipes/cake-recipe.txt",
+		"/D/xampp/htdocs/dev.oneway.vn/api/v3/app/routes.php",
+		"/C/Users/Admin/AppData/Local/Temp/fz3temp-1/media.php",
+		"/C/Users/Admin/AppData/Local/Temp/fz3temp-1/functions.php",
+		"/C/Users/Admin/AppData/Local/Temp/fz3temp-1/style.css",
+		"/D/version-control/reflections/lesson_3_reflections.txt",
+		"/D/version-control/cross/JesusChrist.txt",
+		"/D/version-control/recipes/.git/COMMIT_EDITMSG",
+		"/D/version-control/recipes/chili-recipe.txt",
+		"/D/version-control/recipes/baprang.txt",
+		"/D/version-control/asteroids/.git/COMMIT_EDITMSG",
+		"/D/version-control/reflections/.git/COMMIT_EDITMSG",
+		"/D/version-control/reflections/lession_2_reflections.txt",
+		"/C/Users/Admin/.ssh/id_rsa.pub",
+		"/C/Users/Admin/AppData/Local/Temp/fz3temp-1/footer.php",
+		"/D/version-control/asteroids/index.html",
+		"/D/version-control/reflections/lession_1_reflections.txt",
+		"/D/160615.html",
+		"/D/xampp/htdocs/dev.oneway.vn/api/v3/vendor/autoload.php",
+		"/D/JS/index.js",
+		"/D/xampp/htdocs/dev.oneway.vn/api/v3/app/helpers.php",
+		"/D/xampp/htdocs/dev.oneway.vn/api/v2/index.php",
+		"/D/xampp/htdocs/dev.oneway.vn/api/v2/Data.php",
+		"/D/xampp/htdocs/dev.oneway.vn/api/v3/index.php",
+		"/C/Users/Admin/AppData/Local/Temp/fz3temp-1/wp-config.php",
+		"/D/xampp/htdocs/sublime/old.html",
+		"/C/Users/Admin/AppData/Local/Temp/fz3temp-1/thungo.php",
+		"/C/Users/Admin/AppData/Local/Temp/fz3temp-1/header.php",
+		"/C/Users/Admin/AppData/Local/Temp/fz3temp-1/index.php",
+		"/C/Users/Admin/AppData/Local/Temp/fz3temp-1/head.php",
+		"/C/Users/Admin/AppData/Local/Temp/fz3temp-1/single.php",
+		"/C/Users/Admin/AppData/Local/Temp/fz3temp-1/layout.css",
+		"/C/Users/Admin/AppData/Local/Temp/fz3temp-1/connect.php",
+		"/D/xampp/htdocs/sublime/Email_T6_290515.html",
+		"/C/Users/Admin/AppData/Local/Temp/fz3temp-1/connect 2.php",
+		"/D/xampp/htdocs/sublime/index.php",
+		"/C/Users/Admin/AppData/Local/Temp/fz3temp-1/slider.php",
+		"/C/Users/Admin/AppData/Local/Temp/fz3temp-1/index 2.php",
+		"/D/xampp/htdocs/sublime/edukids/m/connect.php",
+		"/C/Users/Admin/Downloads/onewayv_db_structure.sql",
+		"/C/Users/Admin/Downloads/owcedt (1).sql",
+		"/C/Users/Admin/Downloads/onewayv_db (1).sql",
+		"/C/Users/Admin/AppData/Local/Temp/fz3temp-1/footer 2.php",
+		"/C/Users/Admin/AppData/Local/Temp/fz3temp-1/content-audio_category.php",
+		"/D/xampp/htdocs/sublime/Fixed_T6_170415.html",
+		"/C/Users/Admin/AppData/Local/Temp/fz3temp-1/right_relate.php",
+		"/C/Users/Admin/AppData/Local/Temp/fz3temp-1/radio_boxs.php",
+		"/D/xampp/htdocs/sublime/Edit_Template_Thang4.html",
+		"/D/xampp/htdocs/sublime/Template Fixed Thang 4.html",
+		"/D/xampp/htdocs/sublime/Email_T3_070415.html",
+		"/D/temp/rp_sucokythuat.php",
+		"/C/Users/Admin/AppData/Local/Temp/fz3temp-1/rp.php",
+		"/C/Users/Admin/Downloads/Compressed/jquery.bxslider/readme.md",
+		"/D/xampp/htdocs/sublime/Email_T3_070415",
+		"/D/xampp/htdocs/oneway/wp-config.php",
+		"/D/xampp/htdocs/sublime/Email_T6_030415.html",
+		"/D/xampp/htdocs/sublime/Email_T5_020415.html",
+		"/D/xampp/htdocs/sublime/testEmailT4_V2.html",
+		"/C/Users/Admin/Desktop/loiChung.txt",
+		"/D/xampp/htdocs/oneway/wp-content/themes/oneway/style.css",
+		"/D/xampp/htdocs/sublime/header.php",
+		"/D/xampp/htdocs/sublime/testEmailT4_V1.html",
+		"/D/xampp/htdocs/sublime/testEmailT4_V3_3003.html",
+		"/D/xampp/htdocs/sublime/testEmailT4_V4_3103.html",
+		"/D/xampp/htdocs/sublime/style.css",
+		"/C/Users/Admin/AppData/Local/Temp/fz3temp-1/rp_backup_truocTet.php"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"<open files>",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"json",
+			"[embed]",
+			"wp-caption",
+			"merge ",
+			"ship",
+			"coin",
+			"delayBeforeBullet",
+			"\n$router->get('/', function () {\n    echo \"Hello world! I'm Home.\";\n});\n",
+			"lightbox",
+			"bình luận",
+			"ID_Parent",
+			"onewayv_cedt",
+			"cedt",
+			"http://125.253.122.20:88/oneway_data/image",
+			"150",
+			"Close",
+			"nó",
+			"Logo",
+			"end a new"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"http://radio.oneway.vn:88/oneway_data/image",
+			"tôi"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app/routes.php",
+					"settings":
+					{
+						"buffer_size": 2898,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1620,
+								1620
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 633.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "index.php",
+					"settings":
+					{
+						"buffer_size": 290,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 63.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/_Audio.php",
+					"settings":
+					{
+						"buffer_size": 6174,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5709,
+								5709
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2337.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "apiv3.sublime-project",
+					"settings":
+					{
+						"buffer_size": 231,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								18,
+								18
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 4,
+					"settings":
+					{
+						"buffer_size": 12,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								12,
+								12
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 5,
+					"settings":
+					{
+						"buffer_size": 75,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								75,
+								75
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
+							"word_wrap": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				2,
+				1
+			],
+			[
+				0,
+				1,
+				1,
+				2
+			],
+			[
+				1,
+				1,
+				2,
+				2
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			0.7,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.xdebug":
+	{
+		"height": 111.0
+	},
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 217.0,
+	"status_bar_visible": true
+}
