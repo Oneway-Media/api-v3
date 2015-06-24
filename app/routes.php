@@ -67,23 +67,19 @@ $router->get('/audio/:from/:limit/:sort', function ($from, $limit, $sort) use ($
 *   http://test.oneway.vn/api/api-v3/index.php/audio/category/:slug|id/:id:from[/:limit/:sort]
 */
 $router->get('/audio/category/:id/:from', function ($id,$from) use ($Audio) {
-    json( $Audio->listAudio($from) );
+    json( $Audio->listCateAudio($id,$from) );
 });
 $router->get('/audio/category/:id/:from/:sort', function ($id,$from,$limit) use ($Audio) {
-    json ($Audio->listAudio($from,$limit));
+    json ($Audio->listCateAudio($id,$from,$limit));
 });
 $router->get('/audio/category/:id/:from/:limit/:sort', function ($id,$from, $limit, $sort) use ($Audio) {
-    json ($Audio->listAudio($from,$limit,$sort));
+    json ($Audio->listCateAudio($id,$from,$limit,$sort));
 });
 
 
 // TEST area
 $router->get('/test', function () {
-    // Test your idea here ...   
-    $arg = ['a' => '1'];
-    $addArg = ['b'=>'2','c'=>'3'];
-    array_push($arg,$addArg);
-    var_dump($arg) ;
+    
 });
 
 

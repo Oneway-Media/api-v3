@@ -108,22 +108,7 @@ class Audio {
     }
     
     // Get list of audio.
-    public static function listAudio($from,$limit = null, $sort = null) {
-        $ord = array();
-
-        if ($limit=='') {$limit = '30'; };
-        if ($sort=='') {
-            $sort = 'new';
-            $ord = array( 'date' => 'DESC' );
-        } else if ($sort == 'az') {
-            // Tua de hien tai chua the sap xep theo theo thu tu
-            //$ord = array( 'title' => 'ASC' );
-            $ord = array( 'date' => 'DESC' );
-        } else {
-            $ord = array( 'date' => 'DESC' );
-        };
-
-        $offset = intval($from)*intval($limit);
+    public static function listAudio($from=null,$limit = null, $sort = null) {
 
         $fields = [
             'id' => 'ID',
@@ -131,26 +116,31 @@ class Audio {
             'date' => 'post_date',
             'thumbnail' => ''
         ];
-        if ($sort != 'view') {
-            $raw = new WP_Query([
-                'post_status' => 'publish',
-                'post_type' => 'audio',
-                'orderby' => $ord,
-                'offset' => $offset,
-                'posts_per_page' => $limit                
-            ]);    
-        } else if ($sort == 'view') {
-            $raw = new WP_Query([
-                'post_status' => 'publish',
-                'post_type' => 'audio',
-                'orderby'   => 'meta_value_num',
-                'meta_key'  => '_count-views_all',
-                'order'   => 'DESC',
-                'offset' => $offset,
-                'posts_per_page' => $limit                
-            ]);
+
+        if ($from > 0) {$from = $from - 1;} else if ($from <= 0) {$from = 0;};
+        if ($limit == null) { $limit = 30; };
+        if ($sort == null) { $sort = 'new';};
+
+        $offset = intval($from)*intval($limit);
+
+        $arg = [
+            'post_status' => 'publish',
+            'post_type' => 'audio',
+            'offset' => $offset,
+            'posts_per_page' => $limit,                
+        ];
+
+        if ($sort == 'view') {
+            $arg['orderby'] = 'meta_value_num';
+            $arg['meta_key'] = '_count-views_all';
+            $arg['order'] = 'DESC';
+            
+        } else {
+            $arg['orderby'] = ['date' => 'DESC'];
+            
         }
         
+        $raw = new WP_Query($arg);
 
         $pre = sanitize($raw->posts, $fields);
 
