@@ -108,7 +108,7 @@ class Audio {
     }
     
     // Get list of audio.
-    public static function listAudio($from=null,$limit = null, $sort = null) {
+    public static function listAudio($from,$limit = null, $sort = null) {
 
         $fields = [
             'id' => 'ID',
@@ -160,7 +160,77 @@ class Audio {
 
     }
 
-	
+	//Get list of audio belong to specific category
+    public static function listAudioCate($id,$from,$limit = null, $sort=null) {
+        
+        $fields = [
+            'id' => 'ID',
+            'title' => 'post_title',
+            'date' => 'post_date',
+            'thumbnail' => ''
+        ];
+
+        if ($from > 0) {$from = $from - 1;} else if ($from <= 0) {$from = 0;};
+        if ($limit == null) { $limit = 30; };
+        if ($sort == null) { $sort = 'new';};
+
+        $offset = intval($from)*intval($limit);
+
+        $arg = [
+            'post_status' => 'publish',
+            'post_type' => 'audio',
+            'offset' => $offset,
+            'posts_per_page' => $limit,             
+        ];
+
+        
+
+        if ($sort == 'view') {
+            $arg['orderby'] = 'meta_value_num';
+            $arg['meta_key'] = '_count-views_all';
+            $arg['order'] = 'DESC';
+            
+        } else {
+            $arg['orderby'] = ['date' => 'DESC'];
+            
+        }
+
+        if( is_numeric($id) ) {
+            // By ID
+            $arg['tax_query'] = [
+                [
+                    'taxonomy' => 'audio_category',
+                    'field'    => 'term_id',
+                    'terms'    => $id,
+                ]
+            ];
+        } else {
+            // By Slug
+            $arg['tax_query'] = [
+                [
+                    'taxonomy' => 'audio_category',
+                    'field'    => 'slug',
+                    'terms'    => $id,
+                ]
+            ];
+        }
+
+        $raw = new WP_Query($arg);
+
+        $pre = sanitize($raw->posts, $fields);
+
+        if(count($pre) > 0) {
+            foreach($pre as $p) {
+                $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
+                $output[] = $p;
+            }
+
+            return $output;
+        } else {
+            return [];
+        }
+
+    }
 }
 
 ?>
