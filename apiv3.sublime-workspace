@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"meta",
+				"meta_key"
+			],
+			[
+				"order",
+				"orderby"
+			],
+			[
+				"of",
+				"offset"
+			],
+			[
 				"lis",
 				"listAudio"
 			],
@@ -40,68 +52,19 @@
 	"buffers":
 	[
 		{
-			"file": "app/routes.php",
-			"settings":
-			{
-				"buffer_size": 2898,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "index.php",
-			"settings":
-			{
-				"buffer_size": 290,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "app/_Audio.php",
 			"settings":
 			{
-				"buffer_size": 6174,
+				"buffer_size": 7675,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "apiv3.sublime-project",
+			"file": "app/routes.php",
 			"settings":
 			{
-				"buffer_size": 231,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "|+| \"$ord \"\n",
-			"settings":
-			{
-				"buffer_size": 12,
-				"line_ending": "Windows",
-				"name": "Xdebug Watch",
-				"read_only": true,
-				"scratch": true
-			}
-		},
-		{
-			"contents": "=> D:\\xampp\\htdocs\\dev.oneway.vn\\api\\api-v3\\app\\routes.php\n	|+| 57\n	|+| 83\n",
-			"settings":
-			{
-				"buffer_size": 75,
-				"line_ending": "Windows",
-				"name": "Xdebug Breakpoint",
-				"read_only": true,
-				"scratch": true
-			}
-		},
-		{
-			"contents": "",
-			"settings":
-			{
-				"buffer_size": 0,
-				"line_ending": "Windows",
-				"name": "Xdebug Stack",
-				"read_only": true,
-				"scratch": true
+				"buffer_size": 2944,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -153,21 +116,22 @@
 	},
 	"file_history":
 	[
+		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/app/routes.php",
+		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/app/_Audio.php",
+		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/apiv3.sublime-project",
+		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/index.php",
+		"/D/xampp/htdocs/dev.oneway.vn/wp-includes/functions.php",
 		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/vendor/slim/slim/Slim/Middleware/PrettyExceptions.php",
 		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/vendor/slim/slim/Slim/Middleware/MethodOverride.php",
 		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/vendor/slim/slim/Slim/Route.php",
 		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/vendor/slim/slim/Slim/Middleware/Flash.php",
 		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/vendor/slim/slim/Slim/Slim.php",
 		"/D/xampp/htdocs/dev.oneway.vn/wp-includes/wp-db.php",
-		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/apiv3.sublime-project",
 		"/C/Users/Admin/AppData/Roaming/Sublime Text 2/Packages/Xdebug Client/Xdebug.sublime-settings",
 		"/D/xampp/htdocs/dev.oneway.vn/wp-config.php",
 		"/D/ONEWAY/BackupWeb150615/wp-config.php",
 		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/app/helpers.php",
-		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/app/routes.php",
-		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/app/_Audio.php",
 		"/C/Users/Admin/Desktop/v3/app/routes.php",
-		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/index.php",
 		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/README.md",
 		"/D/xampp/htdocs/dev.oneway.vn/api/api-v3/.git/COMMIT_EDITMSG",
 		"/D/version-control/cross/.git/COMMIT_EDITMSG",
@@ -296,23 +260,23 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/routes.php",
+					"file": "app/_Audio.php",
 					"settings":
 					{
-						"buffer_size": 2898,
+						"buffer_size": 7675,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1620,
-								1620
+								5805,
+								5750
 							]
 						],
 						"settings":
@@ -322,52 +286,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 633.0,
+						"translation.y": 2085.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "index.php",
+					"file": "app/routes.php",
 					"settings":
 					{
-						"buffer_size": 290,
+						"buffer_size": 2944,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 63.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/_Audio.php",
-					"settings":
-					{
-						"buffer_size": 6174,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5709,
-								5709
+								2068,
+								2068
 							]
 						],
 						"settings":
@@ -377,125 +314,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2337.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "apiv3.sublime-project",
-					"settings":
-					{
-						"buffer_size": 231,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								18,
-								18
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 4,
-					"settings":
-					{
-						"buffer_size": 12,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								12,
-								12
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
-							"word_wrap": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 1,
-			"sheets":
-			[
-				{
-					"buffer": 5,
-					"settings":
-					{
-						"buffer_size": 75,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								75,
-								75
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
-							"word_wrap": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Xdebug Client/Xdebug.tmLanguage",
-							"word_wrap": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 45.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -518,32 +337,18 @@
 			[
 				0,
 				0,
-				2,
+				1,
 				1
-			],
-			[
-				0,
-				1,
-				1,
-				2
-			],
-			[
-				1,
-				1,
-				2,
-				2
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.5,
 			1.0
 		],
 		"rows":
 		[
 			0.0,
-			0.7,
 			1.0
 		]
 	},
