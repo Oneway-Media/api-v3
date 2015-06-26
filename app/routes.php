@@ -64,7 +64,7 @@ $router->get('/audio/:from/:limit/:sort', function ($from, $limit, $sort) use ($
 });
 
 /*
-*   http://test.oneway.vn/api/api-v3/index.php/audio/category/:slug|id/:id:from[/:limit/:sort]
+*   http://test.oneway.vn/api/api-v3/index.php/audio-category/:slug|id/:from[/:limit/:sort]
 */
 $router->get('/audio-category/:id/:from', function ($id,$from) use ($Audio) {
     json ($Audio->listAudioCate($id,$from));
@@ -76,10 +76,27 @@ $router->get('/audio-category/:id/:from/:limit/:sort', function ($id,$from, $lim
     json ($Audio->listAudioCate($id,$from,$limit,$sort));
 });
 
+/*
+*   http://test.oneway.vn/api/api-v3/index.php/audio-related/:slug|id/:from[/:limit/:sort]
+*/
+$router->get('/audio-related/:id/:from', function ($id,$from) use ($Audio) {
+    json ($Audio->listAudioRel($id,$from));
+});
+$router->get('/audio-related/:id/:from/:limit', function ($id,$from,$limit) use ($Audio) {
+    json ($Audio->listAudioRel($id,$from,$limit));
+});
+$router->get('/audio-related/:id/:from/:limit/:sort', function ($id,$from, $limit, $sort) use ($Audio) {
+    json ($Audio->listAudioRel($id,$from,$limit,$sort));
+});
+
 
 // TEST area
 $router->get('/test', function () {
     // Test your idea here ... 
+});
+
+$router->get('/test-bug', function () use ($Audio) {
+    
 });
 
 
