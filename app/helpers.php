@@ -47,6 +47,8 @@ function find($collection = [], $field = null, $equal = null) {
     return $output;
 }
 
+
+//Change Vietnamese no mark
 function no_mark( $str ) {        
         $unicode = array(
             'a'=>'á|à|ả|ã|ạ|ă|ắ|ặ|ằ|ẳ|ẵ|â|ấ|ầ|ẩ|ẫ|ậ',

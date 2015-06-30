@@ -308,7 +308,265 @@ class Audio {
 
     }
 
-     
+     //Get related audio by anchor audio.
+    public static function audioItem($id,$fields = null) {
+        
+        // Switch $id to ID from slug
+        if( !is_numeric($id) ) {
+            // get posst from slug
+            $post = get_page_by_path($id, OBJECT, 'audio');
+            
+        } else {
+            //get post from ID
+            $post = get_post($id);
+        }
+
+
+
+        if ($fields == 'basic' || $fields === null) {
+            $basic_fields = [
+                'id' => 'ID',
+                'slug' => 'post_name',
+                'title' => 'post_title',
+                'date' => 'post_date',
+                'permalink' => '',
+                'excerpt' => 'post_excerpt',
+                'content' => 'post_content',
+                'src' => '',
+                'keyword' => '',
+                'cover' => '',
+                'view' => '',
+                'like' => '',
+                'share' => '',
+                'thumbnail' => ''
+            ];
+
+
+            $pre = sanitize($post, $basic_fields);
+
+            if(count($pre) > 0) {
+                foreach($pre as $p) {
+                    $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
+                    $p['permalink'] = get_permalink($p['id']);
+                    $p['src'] = get_post_meta( $p['id'], 'oneway_audiolink', true );
+                    $p['keyword'] = get_post_meta( $p['id'], '_yoast_wpseo_focuskw', true );
+                    preg_match('/< *img[^>]*src *= *["\']?([^"\']*)/i', $p['content'], $img);
+                    $p['cover'] = $img['1'];
+                    $p['view'] = get_post_meta( $p['id'], '_count-views_all', true );
+                    $p['like'] = get_post_meta( $p['id'], 'oneway_like', true );
+                    $p['share'] = get_post_meta( $p['id'], 'oneway_share', true );
+                    $output[] = $p;
+                }
+
+                return $output;
+            } else {
+                return [];
+            }
+        }
+
+         else if ($fields == 'extra')  {
+            $cmts = get_comments( 'post_id='.$id);
+            $extra_fields = [
+                'id' => 'comment_ID',
+                'author_name' => 'comment_author',
+                'author_email' => 'comment_author_email',
+                'date' => 'comment_date',
+                'content' => 'comment_content',
+                'approved' => 'comment_approved',
+                'parent_id' => 'comment_parent',
+                'user_id' => 'user_id'
+            ];
+
+            $pre = sanitize($cmts, $extra_fields);
+
+            if(count($pre) > 0) {
+                return $pre;
+            } else {
+                return [];
+            }
+
+        } else if ($fields == 'full')  {
+
+             $cmts = get_comments( 'post_id='.$id);
+            $cmt_fields = [
+                'id' => 'comment_ID',
+                'author_name' => 'comment_author',
+                'author_email' => 'comment_author_email',
+                'date' => 'comment_date',
+                'content' => 'comment_content',
+                'approved' => 'comment_approved',
+                'parent_id' => 'comment_parent',
+                'user_id' => 'user_id'
+            ];
+
+            $cmts_pre = sanitize($cmts, $cmt_fields);
+
+            $full_fields = [
+                'id' => 'ID',
+                'slug' => 'post_name',
+                'title' => 'post_title',
+                'date' => 'post_date',
+                'permalink' => '',
+                'excerpt' => 'post_excerpt',
+                'content' => 'post_content',
+                'src' => '',
+                'keyword' => '',
+                'cover' => '',
+                'view' => '',
+                'like' => '',
+                'share' => '',
+                'thumbnail' => '',
+                'comments' => ''
+            ];
+
+            $full_pre = sanitize($post, $full_fields);
+
+            if (count($full_pre) > 0) {
+                foreach($full_pre as $p) {
+                    $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
+                    $p['permalink'] = get_permalink($p['id']);
+                    $p['src'] = get_post_meta( $p['id'], 'oneway_audiolink', true );
+                    $p['keyword'] = get_post_meta( $p['id'], '_yoast_wpseo_focuskw', true );
+                    preg_match('/< *img[^>]*src *= *["\']?([^"\']*)/i', $p['content'], $img);
+                    $p['cover'] = $img['1'];
+                    $p['view'] = get_post_meta( $p['id'], '_count-views_all', true );
+                    $p['like'] = get_post_meta( $p['id'], 'oneway_like', true );
+                    $p['share'] = get_post_meta( $p['id'], 'oneway_share', true );
+                    $p['comments'] = $cmts_pre;
+                    $output[] = $p;
+                }
+
+                return $output;
+
+            } else {
+                return [];
+            }
+
+
+        }
+
+
+    } 
+          
+
+    // Count all audio.
+    public static function countAll() {
+        $allPosts = wp_count_posts('audio');
+        return $allPosts->publish;
+    }
+
+    // Count audio by category.
+    public static function countCate($id) {
+
+        $taxonomy = "audio_category"; // can be category, post_tag, or custom taxonomy name
+         
+        if( is_numeric($id) ) {
+            // Using Term ID
+            $term = get_term_by('id', $id, $taxonomy);
+        } else {
+            // Using Term Slug
+            $term = get_term_by('slug', $id, $taxonomy);
+        }
+        // Fetch the count
+        return $term->count;
+
+    }
+
+    // Get random items.
+    public static function randomAll() {
+        
+
+        $fields = [
+            'id' => 'ID',
+            'title' => 'post_title',
+            'date' => 'post_date',
+            'thumbnail' => ''
+        ];
+
+        $arg = [
+            'post_status' => 'publish',
+            'post_type' => 'audio',
+            'posts_per_page' => '30',  
+            'orderby'   => 'rand'
+        ];
+
+        $raw = new WP_Query($arg);
+
+        $pre = sanitize($raw->posts, $fields);
+
+        if(count($pre) > 0) {
+            foreach($pre as $p) {
+                $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
+                $output[] = $p;
+            }
+
+            return $output;
+        } else {
+            return [];
+        }
+
+
+    }
+
+    // Get random items by category.
+    public static function randomCate($id,$from, $limit = null) {
+        $fields = [
+            'id' => 'ID',
+            'title' => 'post_title',
+            'date' => 'post_date',
+            'thumbnail' => ''
+        ];
+
+        if ($from > 0) {$from = $from - 1;} else if ($from <= 0) {$from = 0;};
+        if ($limit == null) { $limit = 30; };
+
+        $offset = intval($from)*intval($limit);
+
+        $arg = [
+            'post_status' => 'publish',
+            'post_type' => 'audio',
+            'offset' => $offset,
+            'posts_per_page' => $limit,  
+            'orderby'   => 'rand'
+        ];
+
+
+        if( is_numeric($id) ) {
+            // By ID
+            $arg['tax_query'] = [
+                [
+                    'taxonomy' => 'audio_category',
+                    'field'    => 'term_id',
+                    'terms'    => $id,
+                ]
+            ];
+        } else {
+            // By Slug
+            $arg['tax_query'] = [
+                [
+                    'taxonomy' => 'audio_category',
+                    'field'    => 'slug',
+                    'terms'    => $id,
+                ]
+            ];
+        }
+
+        $raw = new WP_Query($arg);
+
+        $pre = sanitize($raw->posts, $fields);
+
+        if(count($pre) > 0) {
+            foreach($pre as $p) {
+                $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
+                $output[] = $p;
+            }
+
+            return $output;
+        } else {
+            return [];
+        }
+    }
+    
 }
 
 ?>

@@ -10,6 +10,7 @@ $Audio = new Audio; $News = new News;
 // $router->post('/', function () use ($router) { $router->request()->params('paramName'); });
 
 
+
 /*
 *   http://test.oneway.vn/api/api-v3/index.php
 */
@@ -90,14 +91,55 @@ $router->get('/audio-related/:id/:from/:limit/:sort', function ($id,$from, $limi
 });
 
 
+/*
+*   http://test.oneway.vn/api/api-v3/index.php/audio-item/:slug|:id/:fields
+*/
+$router->get('/audio-item/:id', function ($id) use ($Audio) {
+    json ($Audio->audioItem($id));
+});
+$router->get('/audio-item/:id/:fields', function ($id,$fields) use ($Audio) {
+    json ($Audio->audioItem($id,$fields));
+});
+
+
+/*
+*   http://test.oneway.vn/api/api-v3/index.php/count
+*/
+$router->get('/count', function () use ($Audio) {
+    json ($Audio->countAll());
+});
+
+/*
+*   http://test.oneway.vn/api/api-v3/index.php/count/:id
+*/
+$router->get('/count/:id', function ($id) use ($Audio) {
+    json ($Audio->countCate($id));
+});
+
+
+/*
+*   http://test.oneway.vn/api/api-v3/index.php/random
+*/
+$router->get('/random', function () use ($Audio) {
+    json ($Audio->randomAll());
+});
+
+/*
+*   http://test.oneway.vn/api/api-v3/index.php/random/:slug|:id/:from[/:limit/:sort]
+*/
+$router->get('/random/:id/:from', function ($id,$from) use ($Audio) {
+    json ($Audio->randomCate($id,$from));
+});
+$router->get('/random/:id/:from/:limit', function ($id,$from,$limit) use ($Audio) {
+    json ($Audio->randomCate($id,$from,$limit));
+});
+
+
 // TEST area
 $router->get('/test', function () {
     // Test your idea here ... 
 });
 
-$router->get('/test-bug', function () use ($Audio) {
-    
-});
 
 
 
