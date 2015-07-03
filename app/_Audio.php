@@ -74,23 +74,42 @@ class Audio {
                 'post_status' => 'publish',
                 'post_type' => 'audio',
                 'posts_per_page' => LIMIT,
-                's' => $keyword                
+                's' => $keyword
             ]);
-        } else { //Search by category
-            $raw = new WP_Query([
-                'post_status' => 'publish',
-                'post_type' => 'audio',
-                'tax_query' => [
-                    [
-                        'taxonomy' => 'audio_category',
-                        'field'    => 'slug',
-                        'terms'    => $category,
-                    ]
-                ],
-                'posts_per_page' => LIMIT,
-                's' => $keyword                
-            ]);
+        } else {
+            if( is_numeric($category) ) {
+                // Using Term ID
+                $raw = new WP_Query([
+                    'post_status' => 'publish',
+                    'post_type' => 'audio',
+                    'tax_query' => [
+                        [
+                            'taxonomy' => 'audio_category',
+                            'field'    => 'term_id',
+                            'terms'    => $category,
+                        ]
+                    ],
+                    'posts_per_page' => LIMIT,
+                    's' => $keyword                
+                ]);
+            } else {
+                // Using Term Slug
+                $raw = new WP_Query([
+                    'post_status' => 'publish',
+                    'post_type' => 'audio',
+                    'tax_query' => [
+                        [
+                            'taxonomy' => 'audio_category',
+                            'field'    => 'slug',
+                            'terms'    => $category,
+                        ]
+                    ],
+                    'posts_per_page' => LIMIT,
+                    's' => $keyword                
+                ]);
+            }
         }
+        
             
         $pre = sanitize($raw->posts, $fields);
         
@@ -566,6 +585,8 @@ class Audio {
             return [];
         }
     }
+
+    
     
 }
 
