@@ -35,7 +35,7 @@ function sanitize($data = null, $fields = []) {
 $action = isset($_GET['action']) ? $_GET['action']: 'xxx';
 $from = isset($_GET['page']) ? intval($_GET['page']): 0;
 
-$limit = 300;
+$limit = 100;
 
 
 
