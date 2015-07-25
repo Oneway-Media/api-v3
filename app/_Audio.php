@@ -651,15 +651,15 @@ class Audio {
 			// Duration
 			case 'duration':
 				
-				if( ! is_numeric($value) || $value < 200 ) {
+				if( ! is_numeric($value) || $value < 100 ) {
 					return false;
 				}
 				
 				$duration = get_post_meta( $id, 'oneway_audioduration', true );
 				
-				if( intval($duration) > 0 ) {
-					return true;
-				}
+//				if( intval($duration) > 0 ) {
+//					return true;
+//				}
 				
 				update_field('oneway_audioduration', $value, $id);
 				return true;
@@ -686,8 +686,12 @@ class Audio {
 				
 				return true;
 			break;
-			
-			
+            
+            
+            
+            
+            
+            
 			
 			// Share
 			case 'share':
@@ -700,6 +704,23 @@ class Audio {
 			
 			
 			
+            
+			
+			case 'status':
+            
+                if( $value == 'publish' || $value == 'private' || $value == 'future' || $value == 'draft' || $value == 'trash' ) {
+                    wp_update_post([
+                        'ID' => $id,
+                        'post_status' => $value
+                    ]);
+                    
+                    return true;
+                }
+            
+                return false;
+            break;
+            
+            
 			
 			default:
 				return false;
