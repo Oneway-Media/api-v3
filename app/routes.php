@@ -56,36 +56,36 @@ $router->get('/audio/:from', function ($from) use ($Audio) {
     json( $Audio->listAudio($from) );
 });
 $router->get('/audio/:from/:sort', function ($from,$limit) use ($Audio) {
-    json ($Audio->listAudio($from,$limit));
+    json($Audio->listAudio($from,$limit));
 });
 $router->get('/audio/:from/:limit/:sort', function ($from, $limit, $sort) use ($Audio) {
-    json ($Audio->listAudio($from,$limit,$sort));
+    json($Audio->listAudio($from,$limit,$sort));
 });
 
 /*
 *   http://test.oneway.vn/api/api-v3/index.php/audio-category/:slug|id/:from[/:limit/:sort]
 */
 $router->get('/audio-category/:id/:from', function ($id,$from) use ($Audio) {
-    json ($Audio->listAudioCate($id,$from));
+    json($Audio->listAudioCate($id,$from));
 });
 $router->get('/audio-category/:id/:from/:limit', function ($id,$from,$limit) use ($Audio) {
-    json ($Audio->listAudioCate($id,$from,$limit));
+    json($Audio->listAudioCate($id,$from,$limit));
 });
 $router->get('/audio-category/:id/:from/:limit/:sort', function ($id,$from, $limit, $sort) use ($Audio) {
-    json ($Audio->listAudioCate($id,$from,$limit,$sort));
+    json($Audio->listAudioCate($id,$from,$limit,$sort));
 });
 
 /*
 *   http://test.oneway.vn/api/api-v3/index.php/audio-related/:slug|id/:from[/:limit/:sort]
 */
 $router->get('/audio-related/:id/:from', function ($id,$from) use ($Audio) {
-    json ($Audio->listAudioRel($id,$from));
+    json($Audio->listAudioRel($id,$from));
 });
 $router->get('/audio-related/:id/:from/:limit', function ($id,$from,$limit) use ($Audio) {
-    json ($Audio->listAudioRel($id,$from,$limit));
+    json($Audio->listAudioRel($id,$from,$limit));
 });
 $router->get('/audio-related/:id/:from/:limit/:sort', function ($id,$from, $limit, $sort) use ($Audio) {
-    json ($Audio->listAudioRel($id,$from,$limit,$sort));
+    json($Audio->listAudioRel($id,$from,$limit,$sort));
 });
 
 
@@ -93,10 +93,10 @@ $router->get('/audio-related/:id/:from/:limit/:sort', function ($id,$from, $limi
 *   http://test.oneway.vn/api/api-v3/index.php/audio-item/:slug|:id/:fields
 */
 $router->get('/audio-item/:id', function ($id) use ($Audio) {
-    json ($Audio->audioItem($id));
+    json($Audio->audioItem($id));
 });
 $router->get('/audio-item/:id/:fields', function ($id,$fields) use ($Audio) {
-    json ($Audio->audioItem($id,$fields));
+    json($Audio->audioItem($id,$fields));
 });
 
 
@@ -104,14 +104,14 @@ $router->get('/audio-item/:id/:fields', function ($id,$fields) use ($Audio) {
 *   http://test.oneway.vn/api/api-v3/index.php/count
 */
 $router->get('/count', function () use ($Audio) {
-    json ($Audio->countAll());
+    json($Audio->countAll());
 });
 
 /*
 *   http://test.oneway.vn/api/api-v3/index.php/count/:id
 */
 $router->get('/count/:id', function ($id) use ($Audio) {
-    json ($Audio->countCate($id));
+    json($Audio->countCate($id));
 });
 
 
@@ -119,18 +119,42 @@ $router->get('/count/:id', function ($id) use ($Audio) {
 *   http://test.oneway.vn/api/api-v3/index.php/random
 */
 $router->get('/random', function () use ($Audio) {
-    json ($Audio->randomAll());
+    json($Audio->randomAll());
 });
 
 /*
 *   http://test.oneway.vn/api/api-v3/index.php/random/:slug|:id/:from[/:limit/:sort]
 */
 $router->get('/random/:id/:from', function ($id,$from) use ($Audio) {
-    json ($Audio->randomCate($id,$from));
+    json($Audio->randomCate($id,$from));
 });
 $router->get('/random/:id/:from/:limit', function ($id,$from,$limit) use ($Audio) {
-    json ($Audio->randomCate($id,$from,$limit));
+    json($Audio->randomCate($id,$from,$limit));
 });
+
+
+
+/*
+*   http://test.oneway.vn/api/api-v3/index.php/audio/update-meta/
+	:id = duration || like || share
+	:key
+	:value
+*/
+$router->post('/audio/update-meta', function () use ($router, $Audio) {
+	json(
+		$Audio->updateMeta(
+			$router->request()->params('id'),
+			$router->request()->params('key'),
+			$router->request()->params('value')
+		)
+	);	
+});
+
+
+
+
+
+
 
 
 /*------------------------------Tin Tuc-------------------------------*/
@@ -255,7 +279,7 @@ $router->get('/search-news/:keyword/:category', function ($keyword, $category) u
 
 // TEST area
 $router->get('/test', function () {
-    // Test your idea here ... 
+    echo duration('public/small.mp3');
 });
 
 

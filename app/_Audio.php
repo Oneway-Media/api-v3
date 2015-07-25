@@ -26,10 +26,10 @@ class Audio {
     // Online Radio
     public static function radio() {
         $id = get_posts(['post_type'=>'radio','posts_per_page'=>1])[0]->ID;
-        $content = '<ul id="radio_block_jumpover">';
-        $content .= '<li><a href="#radio_block_00_12">0h-12h</a></li>';
-        $content .= '<li><a href="#radio_block_12_24">12h-24h</a></li>';
-        $content .= '</ul>';
+        //$content = '<ul id="radio_block_jumpover">';
+        //$content .= '<li><a href="#radio_block_00_12">0h-12h</a></li>';
+        //$content .= '<li><a href="#radio_block_12_24">12h-24h</a></li>';
+        //$content .= '</ul>';
         $content .= '<div id="radio_block_00_12" class="radio_block"><div class="radio_block_milestone">0h-12h</div>';
         $content .= get_post_meta( $id, 'oneway_radioblock1', true );
         $content .= '</div>';
@@ -47,9 +47,9 @@ class Audio {
             'content' => $content,
             'src' => 'http://radio.oneway.vn:8000/ow',
             'keyword' => 'oneway, radio, co doc',
-            'icon' => 'http://oneway.vn/api/api-v3/public/icon-xxx.png',
-            'thumbnail' => 'http://oneway.vn/api/api-v3/public/thumbnail-xxx.jpg',
-            'cover' => 'http://oneway.vn/api/api-v3/public/cover-xxx.jpg',
+            'icon' => 'http://oneway.vn/api/api-v3/public/icon-radio.png',
+            'thumbnail' => 'http://oneway.vn/api/api-v3/public/thumbnail-radio.png',
+            'cover' => 'http://oneway.vn/api/api-v3/public/cover-radio.png',
             'view' => 0,
             'like' => 0,
             'share' => 0
@@ -116,6 +116,11 @@ class Audio {
         if(count($pre) > 0) {
             foreach($pre as $p) {
                 $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
+				
+				// Audio Duration
+				$duration = get_post_meta( $p['id'], 'oneway_audioduration', true );				
+				$p['duration'] = ( is_numeric( $duration) && $duration != '' ) ? intval($duration): 0;
+				
                 $output[] = $p;
             }
 
@@ -133,7 +138,9 @@ class Audio {
             'id' => 'ID',
             'title' => 'post_title',
             'date' => 'post_date',
-            'thumbnail' => ''
+            'thumbnail' => '',
+			'permalink' => ''
+			
         ];
 
         if ($from > 0) {$from = $from - 1;} else if ($from <= 0) {$from = 0;};
@@ -166,6 +173,12 @@ class Audio {
         if(count($pre) > 0) {
             foreach($pre as $p) {
                 $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
+				$p['permalink'] = get_permalink($p['id']);
+				
+				// Audio Duration
+				$duration = get_post_meta( $p['id'], 'oneway_audioduration', true );				
+				$p['duration'] = ( is_numeric( $duration) && $duration != '' ) ? intval($duration): 0;
+				
                 $output[] = $p;
             }
 
@@ -186,7 +199,8 @@ class Audio {
             'id' => 'ID',
             'title' => 'post_title',
             'date' => 'post_date',
-            'thumbnail' => ''
+            'thumbnail' => '',
+			'permalink' => ''
         ];
 
         if ($from > 0) {$from = $from - 1;} else if ($from <= 0) {$from = 0;};
@@ -241,6 +255,12 @@ class Audio {
         if(count($pre) > 0) {
             foreach($pre as $p) {
                 $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
+				$p['permalink'] = get_permalink($p['id']);
+				
+				// Audio Duration
+				$duration = get_post_meta( $p['id'], 'oneway_audioduration', true );				
+				$p['duration'] = ( is_numeric( $duration) && $duration != '' ) ? intval($duration): 0;
+				
                 $output[] = $p;
             }
 
@@ -317,6 +337,11 @@ class Audio {
          if(count($res) > 0) {
             foreach($res as $p) {
                 $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
+				
+				// Audio Duration
+				$duration = get_post_meta( $p['id'], 'oneway_audioduration', true );				
+				$p['duration'] = ( is_numeric( $duration) && $duration != '' ) ? intval($duration): 0;
+				
                 $output[] = $p;
             }
 
@@ -371,9 +396,14 @@ class Audio {
                     $p['keyword'] = get_post_meta( $p['id'], '_yoast_wpseo_focuskw', true );
                     preg_match('/< *img[^>]*src *= *["\']?([^"\']*)/i', $p['content'], $img);
                     $p['cover'] = $img['1'];
-                    $p['view'] = get_post_meta( $p['id'], '_count-views_all', true );
-                    $p['like'] = get_post_meta( $p['id'], 'oneway_like', true );
-                    $p['share'] = get_post_meta( $p['id'], 'oneway_share', true );
+					$p['view'] = intval( get_post_meta( $p['id'], '_count-views_all', true ) );
+                    $p['like'] = intval( get_post_meta( $p['id'], 'oneway_like', true ) );
+                    $p['share'] = intval( get_post_meta( $p['id'], 'oneway_share', true ) );
+					
+					// Audio Duration
+					$duration = get_post_meta( $p['id'], 'oneway_audioduration', true );				
+					$p['duration'] = ( is_numeric( $duration) && $duration != '' ) ? intval($duration): 0;
+					
                     $output[] = $p;
                 }
 
@@ -448,10 +478,15 @@ class Audio {
                     $p['keyword'] = get_post_meta( $p['id'], '_yoast_wpseo_focuskw', true );
                     preg_match('/< *img[^>]*src *= *["\']?([^"\']*)/i', $p['content'], $img);
                     $p['cover'] = $img['1'];
-                    $p['view'] = get_post_meta( $p['id'], '_count-views_all', true );
-                    $p['like'] = get_post_meta( $p['id'], 'oneway_like', true );
-                    $p['share'] = get_post_meta( $p['id'], 'oneway_share', true );
+                    $p['view'] = intval( get_post_meta( $p['id'], '_count-views_all', true ) );
+                    $p['like'] = intval( get_post_meta( $p['id'], 'oneway_like', true ) );
+                    $p['share'] = intval( get_post_meta( $p['id'], 'oneway_share', true ) );
                     $p['comments'] = $cmts_pre;
+					
+					// Audio Duration
+					$duration = get_post_meta( $p['id'], 'oneway_audioduration', true );				
+					$p['duration'] = ( is_numeric( $duration) && $duration != '' ) ? intval($duration): 0;
+					
                     $output[] = $p;
                 }
 
@@ -516,6 +551,11 @@ class Audio {
         if(count($pre) > 0) {
             foreach($pre as $p) {
                 $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
+				
+				// Audio Duration
+				$duration = get_post_meta( $p['id'], 'oneway_audioduration', true );				
+				$p['duration'] = ( is_numeric( $duration) && $duration != '' ) ? intval($duration): 0;
+				
                 $output[] = $p;
             }
 
@@ -577,6 +617,11 @@ class Audio {
         if(count($pre) > 0) {
             foreach($pre as $p) {
                 $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
+				
+				// Audio Duration
+				$duration = get_post_meta( $p['id'], 'oneway_audioduration', true );				
+				$p['duration'] = ( is_numeric( $duration) && $duration != '' ) ? intval($duration): 0;
+				
                 $output[] = $p;
             }
 
@@ -586,6 +631,82 @@ class Audio {
         }
     }
 
+	// Update audio meta
+	public static function updateMeta($id = null, $key = null, $value = null) {
+		
+		if($id === null || $key === null) {
+			return false;
+		}
+		
+		if($value == null) {
+			$value = 1;
+		}
+		
+		if( ! get_post_status( $id ) ) {
+			return false;
+		}
+		
+		switch($key) {
+			
+			// Duration
+			case 'duration':
+				
+				if( ! is_numeric($value) || $value < 200 ) {
+					return false;
+				}
+				
+				$duration = get_post_meta( $id, 'oneway_audioduration', true );
+				
+				if( intval($duration) > 0 ) {
+					return true;
+				}
+				
+				update_field('oneway_audioduration', $value, $id);
+				return true;
+			break;
+			
+			
+			
+			// Like
+			case 'like':
+				$value = intval($value);
+				
+				if($value < -1 || $value > 1 || $value == 0) {
+					return false;
+				}
+			
+				$key = 'oneway_like';				
+				$like = intval( get_post_meta( $id, $key, true ) );
+				
+				if($value == -1 && $like <= 0) {
+					return true;
+				}
+				
+				update_field($key, $like + $value, $id);
+				
+				return true;
+			break;
+			
+			
+			
+			// Share
+			case 'share':
+				$key = 'oneway_share';				
+				$share = intval( get_post_meta( $id, $key, true ) );	
+				update_field($key, $share + 1, $id);
+				return true;
+			break;
+			
+			
+			
+			
+			
+			default:
+				return false;
+			break;
+		}
+		
+	}
     
     
 }

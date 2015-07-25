@@ -73,5 +73,35 @@ function no_mark( $str ) {
         $str = str_replace(' ', '+', $str);
         return trim($str, '+');
 }
+
+
+function duration($link) {
+//    $remotefilename = $link;
+//    if ($fp_remote = fopen($remotefilename, 'rb')) {
+//        $localtempfilename = tempnam('/tmp', 'getID3');
+//        if ($fp_local = fopen($localtempfilename, 'wb')) {
+//            while ($buffer = fread($fp_remote, 8192)) {
+//                fwrite($fp_local, $buffer);
+//            }
+//            fclose($fp_local);
+//            // Initialize getID3 engine
+//            $getID3 = new getID3;
+//            $ThisFileInfo = $getID3->analyze($filename);
+//            // Delete temporary file
+//            unlink($localtempfilename);
+//        }
+//        fclose($fp_remote);
+//        
+//        return $ThisFileInfo;
+//    }
+    
+    $getID3 = new getID3;
+    
+    $info = $getID3->analyze($link);
+    
+    return isset( $info['playtime_seconds'] ) ? $info['playtime_seconds'] : 0;
+    
+}
+
     
 ?>

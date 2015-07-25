@@ -2,7 +2,8 @@
     "name": "onewaymediavn/api-v3",
     "description": "Oneway.vn API v3!",
     "require": {
-        "slim/slim": "^2.6"
+        "slim/slim": "^2.6",
+		"james-heinrich/getid3": "^1.9.9"
     },
     "license": "MIT",
     "authors": [
