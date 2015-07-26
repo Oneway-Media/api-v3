@@ -53,7 +53,8 @@ class Audio {
             'cover' => 'http://oneway.vn/api/api-v3/public/cover-radio.png',
             'view' => 0,
             'like' => 0,
-            'share' => 0
+            'share' => 0,
+            'duration' => '∞'
         ];
         
         return [$radio];
