@@ -8,7 +8,8 @@ class Audio {
 	public static function category($id = null) {
         $fields = ['id'=>'cat_ID','slug'=>'slug','title'=>'name','description'=>'description','count'=>'count'];
         // All categories
-        $categories = get_categories(['type'=>'audio','taxonomy'=>'audio_category','orderby'=>'id','order'=>'ASC']);        
+        $categories = get_categories(['type'=>'audio','taxonomy'=>'audio_category','orderby'=>'id','order'=>'ASC','exclude'=>'83']);         
+        
 		// Get all categories
         if($id === null) {
             return sanitize( $categories, $fields);        

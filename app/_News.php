@@ -9,7 +9,7 @@ class News {
 	public static function category($id = null) {
         $fields = ['id'=>'cat_ID','slug'=>'slug','title'=>'name','description'=>'description','count'=>'count'];
         // All categories
-        $categories = get_categories(['type'=>'news','taxonomy'=>'news_category','orderby'=>'id','order'=>'ASC']);        
+        $categories = get_categories(['type'=>'news','taxonomy'=>'news_category','orderby'=>'id','order'=>'ASC','exclude'=>'82']);        
 		// Get all categories
         if($id === null) {
             return sanitize( $categories, $fields);        
