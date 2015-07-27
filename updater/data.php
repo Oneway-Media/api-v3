@@ -54,7 +54,7 @@ switch($action) {
         $offset = $from * $limit;
         
         $raw = new WP_Query([
-            'post_status' => 'publish',
+            'post_status' => ['publish', 'future'],
             'post_type' => 'audio',
             'offset' => $offset,
             'posts_per_page' => $limit,
@@ -95,7 +95,7 @@ switch($action) {
     
     
         $raw = new WP_Query([
-            'post_status' => 'publish',
+            'post_status' => ['publish', 'future'],
             'post_type' => 'audio',
             'posts_per_page' => $limit,
             'meta_query' => [
