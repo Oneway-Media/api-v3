@@ -40,7 +40,7 @@
                 </td>
                 
                 <td style="text-align:right;">
-                    <button class="btn btn-success" ng-click="actions.refreshAll()">Refresh All</button>
+                    <button class="btn btn-success" ng-click="actions.refreshAll()">Get Duration All</button>
                     <button class="btn btn-primary" ng-show="refreshed" ng-click="actions.updateAll()">Update All</button>
 <!--                    <button class="btn btn-danger" ng-show="refreshed" ng-click="actions.removeAll()">Remove All</button>-->
                 </td>
@@ -54,8 +54,8 @@
                 <th>Title</th>
                 <th>Source</th>
                 <th>Duration</th>
-                <th>Fresh Duration</th>
-                <th>Updated OK</th>                
+                <th>Fresh Dura.</th>
+                <th>Updated OK?</th>                
                 <th>Actions</th>
             </tr>
             
@@ -67,7 +67,7 @@
                 <td> {{item.freshDuration}} </td>
                 <td><span ng-show="item.ok">OK</span></td>
                 <td>
-                    <button class="btn btn-success btn-block" ng-click="actions.refreshThis(item.id)">Refresh</button>
+                    <button class="btn btn-success btn-block" ng-click="actions.refreshThis(item.id)">Get Dura.</button>
                     <button class="btn btn-primary btn-block" ng-click="actions.updateThis(item.id)" ng-show="item.freshDuration">Update</button>
                     <button class="btn btn-danger btn-block" ng-click="actions.removeThis(item.id)" ng-show="!item.freshDuration && refreshed">Remove</button>
                 </td>
