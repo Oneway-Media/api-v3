@@ -80,6 +80,7 @@ class News {
         if(count($pre) > 0) {
             foreach($pre as $p) {
                 $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
+                $p['cover'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'large' )[0];
                 $output[] = $p;
             }
 
@@ -131,6 +132,7 @@ class News {
         if(count($pre) > 0) {
             foreach($pre as $p) {
                 $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
+                $p['cover'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'large' )[0];
                 $output[] = $p;
             }
 
@@ -204,6 +206,7 @@ class News {
         if(count($pre) > 0) {
             foreach($pre as $p) {
                 $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
+                $p['cover'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'large' )[0];
                 $output[] = $p;
             }
 
@@ -279,6 +282,7 @@ class News {
         if(count($res) > 0) {
             foreach($res as $p) {
                 $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
+                $p['cover'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'large' )[0];
                 $output[] = $p;
             }
 
@@ -330,11 +334,16 @@ class News {
                     $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
                     $p['permalink'] = get_permalink($p['id']);
                     $p['keyword'] = get_post_meta( $p['id'], '_yoast_wpseo_focuskw', true );
-                    preg_match('/< *img[^>]*src *= *["\']?([^"\']*)/i', $p['content'], $img);
-                    $p['cover'] = $img['1'];
+                    //preg_match('/< *img[^>]*src *= *["\']?([^"\']*)/i', $p['content'], $img);
+                    //$p['cover'] = $img['1'];
+                    $p['cover'] = wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'full' )[0];
                     $p['view'] = get_post_meta( $p['id'], '_count-views_all', true );
                     $p['like'] = get_post_meta( $p['id'], 'oneway_like', true );
                     $p['share'] = get_post_meta( $p['id'], 'oneway_share', true );
+                    
+                    // Filter the content
+                    $p['content'] = apply_filters( 'the_content', $p['content'] );
+                    
                     $output[] = $p;
                 }
 
@@ -472,6 +481,7 @@ class News {
         if(count($pre) > 0) {
             foreach($pre as $p) {
                 $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
+                $p['cover'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'large' )[0];
                 $output[] = $p;
             }
 
@@ -533,6 +543,7 @@ class News {
         if(count($pre) > 0) {
             foreach($pre as $p) {
                 $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
+                $p['cover'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'large' )[0];
                 $output[] = $p;
             }
 

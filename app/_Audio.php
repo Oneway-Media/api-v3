@@ -406,6 +406,9 @@ class Audio {
 					$duration = get_post_meta( $p['id'], 'oneway_audioduration', true );				
 					$p['duration'] = ( is_numeric( $duration) && $duration != '' ) ? intval($duration): 0;
 					
+					// Filter the content
+                    $p['content'] = apply_filters( 'the_content', $p['content'] );
+					
                     $output[] = $p;
                 }
 
