@@ -19,15 +19,39 @@ $router->get('/', function () { echo "<h1>Oneway.vn API v3.0.0!</h1>"; });
 /*
 *   http://test.oneway.vn/api/api-v3/index.php/category
 */
+
 $router->get('/category', function () use ($Audio) {
     json( $Audio->category() );
 });
+
 /*
 *   http://test.oneway.vn/api/api-v3/index.php/category/:id|slug
 */
 $router->get('/category/:id', function ($id) use ($Audio) {
     json( $Audio->category($id) );
 });
+
+/*
+*   http://test.oneway.vn/api/api-v3/index.php/tag
+*/
+$router->get('/tag', function () use ($Audio) {
+    json( $Audio->tag() );
+});
+
+/*
+*   http://test.oneway.vn/api/api-v3/index.php/tag/:id|slug
+*/
+$router->get('/tag/:id', function ($id) use ($Audio) {
+    json( $Audio->tag($id) );
+});
+
+/*
+*   http://test.oneway.vn/api/api-v3/index.php/audio-tag/:slug|id
+*/
+$router->get('/audio-tag/:id', function ($id) use ($Audio) {
+    json( $Audio->listAudioTag($id) );
+});
+
 /*
 *   http://test.oneway.vn/api/api-v3/index.php/radio
 */

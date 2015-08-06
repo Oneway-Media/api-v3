@@ -22,6 +22,93 @@ class Audio {
             }
         }        
 	}
+	
+	// Get Tags
+	public static function tag($id = null) {
+        $fields = ['id'=>'term_id','slug'=>'slug','title'=>'name','description'=>'description','count'=>'count'];
+        // All categories
+        $tags = get_terms(['audio_tag']);
+        
+		// Get all categories
+        if($id === null) {
+            return sanitize( $tags, $fields);        
+        // Get category by its ID or Slug
+        } else {                                         
+            if( is_numeric($id) ) {
+                return sanitize( find($tags, 'term_id', $id), $fields); // By ID
+            } else {
+                return sanitize( find($tags, 'slug', $id), $fields);// By Slug
+            }
+        }        
+	}
+    
+    
+    
+	//Get list of audio belong to specific category
+    public static function listAudioTag($id = null) {
+        
+        if( $id === null ) {
+            return [];
+        }
+        
+        $fields = [
+            'id' => 'ID',
+            'title' => 'post_title',
+            'date' => 'post_date',
+            'thumbnail' => ''
+        ];
+        
+        
+        if( is_numeric($id) ) {
+            // Using Term ID
+            $raw = new WP_Query([
+                'post_status' => 'publish',
+                'post_type' => 'audio',
+                'tax_query' => [
+                    [
+                        'taxonomy' => 'audio_tag',
+                        'field'    => 'term_id',
+                        'terms'    => $id,
+                    ]
+                ],
+                'posts_per_page' => LIMIT    
+            ]);
+        } else {
+            // Using Term Slug
+            $raw = new WP_Query([
+                'post_status' => 'publish',
+                'post_type' => 'audio',
+                'tax_query' => [
+                    [
+                        'taxonomy' => 'audio_tag',
+                        'field'    => 'slug',
+                        'terms'    => $id,
+                    ]
+                ],
+                'posts_per_page' => LIMIT    
+            ]);
+        }
+        
+        $pre = sanitize($raw->posts, $fields);
+        
+        if(count($pre) > 0) {
+            foreach($pre as $p) {
+                $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
+				
+				// Audio Duration
+				$duration = get_post_meta( $p['id'], 'oneway_audioduration', true );				
+				$p['duration'] = ( is_numeric( $duration) && $duration != '' ) ? intval($duration): 0;
+				
+                $output[] = $p;
+            }
+
+            return $output;
+        } else {
+            return [];
+        }
+
+    }
+    
     
 	
     // Online Radio
