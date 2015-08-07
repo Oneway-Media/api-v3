@@ -222,7 +222,7 @@ class News {
         
         // Switch $id to ID from slug
         if( !is_numeric($id) ) {
-            // get slug from id
+            // get id from slug
             $post = get_page_by_path($id, OBJECT, 'news');
             $id = $post->ID;
         };
@@ -252,6 +252,7 @@ class News {
             $other_num = (int)($limit /2);
         }
 
+
         //Get news random from category
         $cat = wp_get_post_terms($id,'news_category');
         $idcat = $cat[0]->term_id;
@@ -263,13 +264,14 @@ class News {
         $res = array_merge($res,$randomNews);
 
         //Search for the same post
-        $same_post_key = array_search($id, array_column($res, 'id'));
-
+        $get_array_id = array_map(function($element){return $element['id'];}, $res);
+        $same_post_key = array_search($id, $get_array_id);
+        
         //Remove same post 
         unset($res[$same_post_key]);
         //Reset array
         array_values($res);
-
+        
         // Replace another post to fill out array 
         if (count($res) < $limit) {
             $missing = $limit - count($res);
