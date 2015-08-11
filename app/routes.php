@@ -173,12 +173,12 @@ $router->get('/comment/:id/:from/:limit', function ($id,$from,$limit) use ($Audi
 
 
 /*
-*   http://test.oneway.vn/api/api-v3/index.php/audio/update-meta/
+*   http://test.oneway.vn/api/api-v3/index.php/update-meta/
 	:id 
 	:key = duration || like || share
 	:value
 */
-$router->post('/audio/update-meta', function () use ($router, $Audio) {
+$router->post('/update-meta', function () use ($router, $Audio) {
 	json(
 		$Audio->updateMeta(
 			$router->request()->params('id'),
