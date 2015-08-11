@@ -263,7 +263,8 @@ class Audio {
             foreach($pre as $p) {
                 $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
 				$p['permalink'] = get_permalink($p['id']);
-				
+				$p['view'] = get_post_meta( $p['id'], '_count-views_all', true );
+                $p['like'] = get_post_meta( $p['id'], 'oneway_like', true );
 				// Audio Duration
 				$duration = get_post_meta( $p['id'], 'oneway_audioduration', true );				
 				$p['duration'] = ( is_numeric( $duration) && $duration != '' ) ? intval($duration): 0;
@@ -276,8 +277,6 @@ class Audio {
             return [];
         }
 
-        // $res = 'From :'.$from.', Limit :'.$limit.', Sort :'.$sort;
-        // return $res;
 
     }
 
@@ -426,7 +425,8 @@ class Audio {
          if(count($res) > 0) {
             foreach($res as $p) {
                 $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
-				
+				$p['view'] = get_post_meta( $p['id'], '_count-views_all', true );
+                $p['like'] = get_post_meta( $p['id'], 'oneway_like', true );
 				// Audio Duration
 				$duration = get_post_meta( $p['id'], 'oneway_audioduration', true );				
 				$p['duration'] = ( is_numeric( $duration) && $duration != '' ) ? intval($duration): 0;
@@ -781,10 +781,6 @@ class Audio {
             
             
             
-            
-            
-            
-			
 			// Share
 			case 'share':
 				$key = 'oneway_share';				
@@ -794,10 +790,7 @@ class Audio {
 			break;
 			
 			
-			
-			
-            
-			
+            // Status
 			case 'status':
             
                 if( $value == 'publish' || $value == 'private' || $value == 'future' || $value == 'draft' || $value == 'trash' ) {
@@ -820,6 +813,69 @@ class Audio {
 		}
 		
 	}
+
+    // Add a comment to an item.
+    public static function addComment($id = null, $comment = null) {
+        if($id == null || $comment == null) {
+            return false;
+        } else if( $comment['content'] == null ) {
+            return false;
+        }
+
+        $commentdata = array(
+            'comment_post_ID' => $id, // to which post the comment will show up
+            'comment_author' => $comment['name'], //fixed value - can be dynamic 
+            'comment_author_email' => $comment['email'], //fixed value - can be dynamic 
+            'comment_content' => $comment['content'], //fixed value - can be dynamic 
+            'comment_approved' => 0, //set comment's status is pending
+            // 'comment_parent' => 0, //0 if it's not a reply to another comment; if it's a reply, mention the parent comment ID here
+            // 'user_id' => $current_user->ID, //passing current user ID or any predefined as per the demand
+        );
+
+        //Insert new comment and get the comment ID
+        $cmt_id = wp_new_comment( $commentdata );
+
+        return true;
+
+    }
+
+    // Get list of comments.
+    public static function listComment($id, $from = null, $limit = null) {
+
+        $fields = [
+            'id' => 'comment_ID',
+            'name' => 'comment_author',
+            'email' => 'comment_author_email',
+            'content' => 'comment_content'
+        ];
+
+        if ($from > 0) {$from = $from - 1;} else if ($from <= 0 || $from == null) {$from = 0;};
+        if ($limit == null) { $limit = 10; };
+
+        $offset = intval($from)*intval($limit);
+
+        // WP_Comment_Query arguments
+        $args = array (
+            'id'             => $id,
+            'status'         => 'approve',
+            'number' => $limit,
+            'offset' => $offset,
+        );
+
+        // The Comment Query
+        $comment_query = new WP_Comment_Query;
+        $comments = $comment_query->query( $args );
+        
+
+        $pre = sanitize($comments, $fields);
+
+        if(count($pre) > 0) {
+            return $pre;
+        } else {
+            return [];
+        }
+
+    }
     
     
 }

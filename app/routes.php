@@ -157,11 +157,25 @@ $router->get('/random/:id/:from/:limit', function ($id,$from,$limit) use ($Audio
 });
 
 
+/*
+*   http://test.oneway.vn/api/api-v3/index.php/comment/:id[/:from/:limit]
+*/
+$router->get('/comment/:id', function ($id) use ($Audio) {
+    json( $Audio->listComment($id) );
+});
+$router->get('/comment/:id/:from', function ($id,$from) use ($Audio) {
+    json($Audio->listComment($id,$from));
+});
+$router->get('/comment/:id/:from/:limit', function ($id,$from,$limit) use ($Audio) {
+    json($Audio->listComment($id,$from,$limit));
+});
+
+
 
 /*
 *   http://test.oneway.vn/api/api-v3/index.php/audio/update-meta/
-	:id = duration || like || share
-	:key
+	:id 
+	:key = duration || like || share
 	:value
 */
 $router->post('/audio/update-meta', function () use ($router, $Audio) {
@@ -172,6 +186,24 @@ $router->post('/audio/update-meta', function () use ($router, $Audio) {
 			$router->request()->params('value')
 		)
 	);	
+});
+
+/*
+*   http://test.oneway.vn/api/api-v3/index.php/post-comment/
+    :id 
+    :comment = [email,name,content]
+*/
+$router->post('/post-comment', function () use ($router, $Audio) {
+    json(
+        $Audio->addComment(
+            $router->request()->params('id'),
+            [
+                'email'=> $router->request()->params('email'),
+                'name'=> $router->request()->params('name'),
+                'content'=> $router->request()->params('content'),
+            ]
+        )
+    );  
 });
 
 
@@ -303,7 +335,12 @@ $router->get('/search-news/:keyword/:category', function ($keyword, $category) u
 
 // TEST area
 $router->get('/test', function () {
-    echo duration('public/small.mp3');
+    $data = array(
+        'name' => 'linh',
+        'email' => 'linh@gmail.com',
+        'content' => 'tesst lan 2'
+    );
+    echo $query = http_build_query(array('aParam' => $data));
 });
 
 
