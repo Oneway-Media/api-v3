@@ -103,5 +103,27 @@ function duration($link) {
     
 }
 
+function timer($timeobj){
+        $now = new DateTime();
+        $start = $timeobj;
+        //$start = '2013-04-24 16:30:09.000000';
+        $start = new DateTime($start);
+        $spanb = $now->diff($start);
+        if ($spanb->format('%h')=='0' && $spanb->format('%i')=='0') {
+            $span_textb = $spanb->format('%s giây trước');
+        } else if ($spanb->format('%d')=='0' && $spanb->format('%h')=='0') {
+            $span_textb = $spanb->format('%i phút trước');
+        } else if ($spanb->format('%m')=='0' && $spanb->format('%d')=='0') {
+            $span_textb = $spanb->format('%h giờ trước');
+        } else if ($spanb->format('%y')=='0' && $spanb->format('%m')=='0') {
+            $span_textb = $spanb->format('%d ngày trước');
+        } else if ($spanb->format('%y')=='0') {
+            $span_textb = $spanb->format('%m tháng trước');
+        } else if ($spanb->format('%y')!=='0') {
+            $span_textb = $start->format('j/m/Y');
+        }
+        return $span_textb;
+    }
+
     
 ?>

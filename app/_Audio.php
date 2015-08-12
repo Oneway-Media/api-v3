@@ -846,13 +846,34 @@ class Audio {
             'id' => 'comment_ID',
             'name' => 'comment_author',
             'email' => 'comment_author_email',
-            'content' => 'comment_content'
+            'content' => 'comment_content',
+            'date' => 'comment_date',
         ];
 
+        $count = get_comments(['post_id' => $id,'count'=> true, 'status' => 'approve',]);
+
+        if ($limit == null) { 
+            $limit = 10; 
+        }
+
+        if ( intval($limit) > intval($count)) {
+            $limit = $count;
+            $from = 0;
+        }
+
         if ($from > 0) {$from = $from - 1;} else if ($from <= 0 || $from == null) {$from = 0;};
-        if ($limit == null) { $limit = 10; };
+        
 
         $offset = intval($from)*intval($limit);
+
+        if ($offset > intval($count)) {
+            $offset = 0;
+            $limit = intval($count);
+        }
+
+        if (($offset+intval($limit)) > intval($count)) {
+            $limit = intval($count) - $offset;
+        }
 
         // WP_Comment_Query arguments
         $args = array (
@@ -870,7 +891,12 @@ class Audio {
         $pre = sanitize($comments, $fields);
 
         if(count($pre) > 0) {
-            return $pre;
+            foreach($pre as $p) {
+                $p['timer'] =  timer($p['date']);
+                $output[] = $p;
+            }
+
+            return $output;
         } else {
             return [];
         }
