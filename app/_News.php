@@ -133,8 +133,9 @@ class News {
             foreach($pre as $p) {
                 $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
                 $p['cover'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'large' )[0];
-                $p['view'] = get_post_meta( $p['id'], '_count-views_all', true );
-                $p['like'] = get_post_meta( $p['id'], 'oneway_like', true );
+                $p['view'] = intval(get_post_meta( $p['id'], '_count-views_all', true ));
+                $p['like'] = intval(get_post_meta( $p['id'], 'oneway_like', true ));
+                $p['share'] = intval(get_post_meta( $p['id'], 'oneway_share', true ));
                 $output[] = $p;
             }
 
@@ -287,8 +288,9 @@ class News {
             foreach($res as $p) {
                 $p['thumbnail'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'thumbnail' )[0];
                 $p['cover'] =  wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'large' )[0];
-                $p['view'] = get_post_meta( $p['id'], '_count-views_all', true );
-                $p['like'] = get_post_meta( $p['id'], 'oneway_like', true );
+                $p['view'] = intval(get_post_meta( $p['id'], '_count-views_all', true ));
+                $p['like'] = intval(get_post_meta( $p['id'], 'oneway_like', true ));
+                $p['share'] = intval(get_post_meta( $p['id'], 'oneway_share', true ));
                 $output[] = $p;
             }
 
@@ -343,9 +345,9 @@ class News {
                     //preg_match('/< *img[^>]*src *= *["\']?([^"\']*)/i', $p['content'], $img);
                     //$p['cover'] = $img['1'];
                     $p['cover'] = wp_get_attachment_image_src( get_post_thumbnail_id( $p['id'] ), 'full' )[0];
-                    $p['view'] = get_post_meta( $p['id'], '_count-views_all', true );
-                    $p['like'] = get_post_meta( $p['id'], 'oneway_like', true );
-                    $p['share'] = get_post_meta( $p['id'], 'oneway_share', true );
+                    $p['view'] = intval(get_post_meta( $p['id'], '_count-views_all', true ));
+                    $p['like'] = intval(get_post_meta( $p['id'], 'oneway_like', true ));
+                    $p['share'] = intval(get_post_meta( $p['id'], 'oneway_share', true ));
                     
                     // Filter the content
                     $p['content'] = apply_filters( 'the_content', $p['content'] );
