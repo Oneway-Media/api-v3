@@ -71,6 +71,7 @@ class Audio {
                         'terms'    => $id,
                     ]
                 ],
+                'orderby'   => 'rand',
                 'posts_per_page' => LIMIT    
             ]);
         } else {
@@ -85,6 +86,7 @@ class Audio {
                         'terms'    => $id,
                     ]
                 ],
+                'orderby'   => 'rand',
                 'posts_per_page' => LIMIT    
             ]);
         }
