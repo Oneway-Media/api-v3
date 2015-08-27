@@ -1,5 +1,5 @@
 <?php
-define('LIMIT', 30);
+define('LIMIT', 10);
 //define('FIELDS', 'basic');
 
 class Audio {
